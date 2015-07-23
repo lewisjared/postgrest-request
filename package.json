@@ -1,0 +1,32 @@
+{
+  "name": "postgrest-request",
+  "version": "0.0.0",
+  "description": "Request abstraction for postgrest",
+  "main": "index.js",
+  "scripts": {
+    "test": "jasmine"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lewisjared/postgrest-request.git"
+  },
+  "keywords": [
+    "http",
+    "postgres",
+    "postgrest",
+    "request"
+  ],
+  "author": "Jared Lewis",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/lewisjared/postgrest-request/issues"
+  },
+  "homepage": "https://github.com/lewisjared/postgrest-request#readme",
+  "dependencies": {
+    "lodash": "^3.10.0",
+    "superagent": "^1.2.0"
+  },
+  "devDependencies": {
+    "jasmine": "^2.3.1"
+  }
+}
