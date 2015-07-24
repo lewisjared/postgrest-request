@@ -1,22 +1,31 @@
 'use strict';
 
-var request = require('superagent');
+var request = require('./lib/request');
 
-var defaultOptions = function() {
-    return {
-        baseUrl: ''
-    }
-};
+var getDefaultInstance = function() {
+  if (_.isUndefined(defaultInstance)) {
+    throw 'default instance not defined';
+  }
 
-var options = defaultOptions();
+  return defaultInstance;
+}
+
+var instances = [request.create()];
+var defaultInstance = instances[0];
 
 var postgrest = function(uri, options, data) {
-    return request(uri, options, data);
+  return getDefaultInstance.request(uri, options, data);
 };
 
-postgrest.init = function (opts) {
-    options = opts;
-};
+postgrest.addInstance = function (opts, name) {
+  var instance = request.create(opts);
 
+  if (_.isUndefined(name)) {
+    name = '__undefined__';
+  }
+
+  instances[name] = instance;
+  this[opts.name] = instance;
+};
 
 exports = module.exports = postgrest;
