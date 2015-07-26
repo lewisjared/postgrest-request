@@ -1,31 +1,48 @@
 'use strict';
 
-var request = require('./lib/request');
+var Request = require('./lib/request');
+var methods = require('./lib/methods');
+var _ = require('lodash');
 
-var getDefaultInstance = function() {
-  if (_.isUndefined(defaultInstance)) {
-    throw 'default instance not defined';
-  }
-
-  return defaultInstance;
-}
-
-var instances = [request.create()];
-var defaultInstance = instances[0];
-
-var postgrest = function(uri, options, data) {
-  return getDefaultInstance.request(uri, options, data);
+var defaultOptions = {
+  host: 'localhost',
+  port: 3000,
+  method: 'http'
 };
 
-postgrest.addInstance = function (opts, name) {
-  var instance = request.create(opts);
-
-  if (_.isUndefined(name)) {
-    name = '__undefined__';
-  }
-
-  instances[name] = instance;
-  this[opts.name] = instance;
+/**
+ * Configure the module
+ * @param options object
+ */
+var init = function (options) {
+  return new Postgrest(options);
 };
 
-exports = module.exports = postgrest;
+
+/**
+ * Wrapper for calling the Request object
+ * @param options
+ * @constructor
+ */
+var Postgrest = function(options) {
+  this.options = _.assign({}, defaultOptions, options);
+};
+
+methods.forEach(function(method) {
+  Postgrest.prototype[method] = function (url) {
+    return this.request(method, url);
+  }
+});
+
+
+/**
+ * Start a new request
+ * @param method The HTTP verb
+ * @param url Relative URL of the required resource
+ * @returns {Request|exports|module.exports}
+ */
+Postgrest.prototype.request = function (method, url) {
+  return new Request(method, url, this.options);
+};
+
+exports = module.exports = init;
