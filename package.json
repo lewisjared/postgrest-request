@@ -1,6 +1,6 @@
 {
   "name": "postgrest-request",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Request abstraction for postgrest",
   "main": "index.js",
   "scripts": {
