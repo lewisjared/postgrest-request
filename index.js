@@ -11,7 +11,7 @@ var defaultOptions = {
 };
 
 /**
- * Configure the module
+ * Configure the modulecd C:\Co 
  * @param options object
  */
 var init = function (options) {
@@ -46,3 +46,4 @@ Postgrest.prototype.request = function (method, url) {
 };
 
 exports = module.exports = init;
+module.exports.defaults = defaultOptions;

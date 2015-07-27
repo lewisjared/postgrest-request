@@ -43,5 +43,10 @@ postgrest.get('/festival')
 ```
 See https://github.com/begriffs/postgrest/wiki/Routing#filtering for filtering options
 
+### Versioning
+A particular version of the API can be requested by chaining a call to `version(versionNumber)`. This will set the `accept` header of the request.
+Calls to the superagent function `accept` will be ignored as postgrest always returns JSON and ignores the requested application type.
+By default version 1 of the API is requested. Examples for implementing schemas with versioning is available [here](https://github.com/begriffs/postgrest/wiki/API-Versioning)
+
 ## License
 MIT
