@@ -1,7 +1,7 @@
-# Postgres-request
+# postgres-request
 ![Travis build status](https://travis-ci.org/lewisjared/postgrest-request.svg?branch=master)
 
-Providing a interface to query a [postgrest](https://github.com/begriffs/postgrest) instance.
+Providing a node interface to query a [postgrest](https://github.com/begriffs/postgrest) instance.
 
 ## Installation
 ```
@@ -9,7 +9,7 @@ npm install postgrest-request
 ```
 
 ## Usage
-postgrest-request wraps the functionality of [superagent](http://visionmedia.github.io/superagent/). Therefore the query syntax is identical. Full
+postgrest-request wraps the functionality of [superagent](http://visionmedia.github.io/superagent/) and provides the same chaining syntax. Full
 documentation for building queries is available from [superagent](http://visionmedia.github.io/superagent/).
 
 The following code segment queries https://postgrest.herokuapp.com/festival
@@ -27,6 +27,10 @@ postgrest.get('/festival')
     console.log(err, data.body);
   });
 ```
+
+The following features from postgrest have been implemented:
+* filtering
+* versioning
 
 ### Filtering
 The request can be filtered using the `.where()` option. The following code snippet gets all festivals with a rating greater than 7.
