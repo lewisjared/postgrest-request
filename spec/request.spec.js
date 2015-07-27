@@ -28,6 +28,18 @@ describe('request', function () {
       expect(this.request.req._headers.accept).toEqual('version=2');
     });
 
+    it('should add accept header', function () {
+      this.request.version(2);
+
+      expect(this.request.req._headers.accept).toEqual('version=2');
+    });
+
+    it('should request the major version', function () {
+      this.request.version(2.1);
+
+      expect(this.request.req._headers.accept).toEqual('version=2');
+    });
+
 
   })
 });

@@ -11,7 +11,7 @@ var defaultOptions = {
 };
 
 /**
- * Configure the modulecd C:\Co 
+ * Configure the module
  * @param options object
  */
 var init = function (options) {
